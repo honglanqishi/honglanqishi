@@ -11,14 +11,14 @@ const logger = morgan("tiny");
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// var usersRouter = require('./routes/users')
+var usersRouter = require('./routes/users')
 
-// app.use('/users',usersRouter)
+app.use('/users',usersRouter)
 app.use(cors());
 app.use(logger);
 
 
-// 首页
+// 首页1
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
