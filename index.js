@@ -2,7 +2,9 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, Counter } = require("./db");
+const { init: initDB, Counter,User } = require("./db");
+
+const usersRouter = require('./routes/users')
 
 const logger = morgan("tiny");
 
@@ -11,6 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.use(logger);
+app.use('/users',usersRouter)
 
 // 首页
 app.get("/", async (req, res) => {
