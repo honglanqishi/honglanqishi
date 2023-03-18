@@ -8,7 +8,7 @@ router.post('/userInfo', async (req, res) => {
     console.log(res, '返回对象')
     let ret = await User.findAll({
         where: {
-            oepnid: req.body.oepnid
+            openid: req.body.oepnid
           }
     })
 
