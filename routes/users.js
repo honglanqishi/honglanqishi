@@ -4,15 +4,14 @@ let router = express.Router();
 
 router.post('/userInfo', async (req, res) => {
 
-    console.log(req, '请求对象')
-    console.log(res, '返回对象')
+   
     let ret = await User.findAll({
         where: {
             openid: req.body.oepnid
           }
     })
-
-    res.send(ret)
+    console.log(ret)
+    // res.send(ret)
 });
 
 
