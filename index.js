@@ -11,9 +11,9 @@ const logger = morgan("tiny");
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-var usersRouter = require('./routes/users')
+// var usersRouter = require('./routes/users')
 
-app.use('/users',usersRouter)
+// app.use('/users',usersRouter)
 app.use(cors());
 app.use(logger);
 
