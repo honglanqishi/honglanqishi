@@ -2,18 +2,21 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, Counter,User } = require("./db");
+const { init: initDB, Counter } = require("./db");
 
-const usersRouter = require('./routes/users')
+
 
 const logger = morgan("tiny");
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+var usersRouter = require('./routes/users')
+console.log(usersRouter)
+app.use('/users',usersRouter)
 app.use(cors());
 app.use(logger);
-app.use('/users',usersRouter)
+
 
 // 首页
 app.get("/", async (req, res) => {

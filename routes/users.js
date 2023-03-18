@@ -1,11 +1,11 @@
 const { User } = require("../db");
-var express = require('express')
-let router = express.Router()
+var express = require('express');
+let router = express.Router();
 
-router.post('/userInfo',async(req,res)=>{
+router.post('/userInfo', async (req, res) => {
 
-    console.log(req,'请求对象')
-    console.log(res,'返回对象')
+    console.log(req, '请求对象')
+    console.log(res, '返回对象')
     let ret = await User.findAll({
         where: {
             oepnid: req.body.oepnid
@@ -13,7 +13,7 @@ router.post('/userInfo',async(req,res)=>{
     })
 
     res.send(ret)
-})
+});
 
 
 module.exports = router
