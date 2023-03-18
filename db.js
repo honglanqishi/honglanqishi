@@ -20,34 +20,34 @@ const Counter = sequelize.define("Counter", {
   },
 });
 
-// const User = sequelize.define("User", {
-//   openid: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   },
-//   userId: {
-//     type: DataTypes.UUID,
-//     defaultValue: DataTypes.UUIDV4
-//   },
-//   points: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false,
-//     defaultValue: 5
-//   },
-//   isVip: {
-//     type: DataTypes.STRING,
-//     defaultValue:'0'
-//   },
-//   nickName:{
-//     type:DataTypes.STRING
-//   },
-//   avatarUrl:{
-//     type:DataTypes.STRING
-//   },
-//   isSignIn:{
-//     type:DataTypes.STRING
-//   }
-// });
+const User = sequelize.define("User", {
+  openid: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  userId: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4
+  },
+  points: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 5
+  },
+  isVip: {
+    type: DataTypes.STRING,
+    defaultValue:'0'
+  },
+  nickName:{
+    type:DataTypes.STRING
+  },
+  avatarUrl:{
+    type:DataTypes.STRING
+  },
+  isSignIn:{
+    type:DataTypes.STRING
+  }
+});
 
 // 数据库初始化方法
 async function init() {
