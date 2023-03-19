@@ -12,8 +12,10 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 var usersRouter = require('./routes/users')
+var chatRouter = require('./chat/index')
 
 app.use('/users',usersRouter)
+app.use('/chat',chatRouter)
 app.use(cors());
 app.use(logger);
 
