@@ -31,7 +31,7 @@ const api = new ChatGPTUnofficialProxyAPI({
 
 
 router.post('/getAnswer', async (req, res) => {
-    const ret = ''
+    var ret = ''
     if (req.body.id) {
         ret = await api.sendMessage(req.body.content, {
             conversationId: req.body.conversationId,
