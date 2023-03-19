@@ -11,8 +11,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 
 import usersRouter from './routes/users.js'
-// console.log(usersRouter,'1111111')
-import chatRouter from './chat/index.js'
+// import chatRouter from './chat/index.js'
 import proxyRouter from './chat/proxy.js'
 
 
@@ -29,7 +28,7 @@ app.use(express.json());
 
 
 app.use('/users',usersRouter)
-app.use('/chat',chatRouter)
+// app.use('/chat',chatRouter)
 app.use('/proxy',proxyRouter)
 
 app.use(cors());

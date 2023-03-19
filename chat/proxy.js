@@ -25,7 +25,9 @@ router.post('/getAnswer', async (req, res) => {
     axios(config)
         .then(function (response) {
             console.log(data.sessionId);
-            res.send(JSON.stringify(response.data))
+            let ret = response.data
+            ret.sessionId = data.sessionId
+            res.send(JSON.stringify(ret))
         })
         .catch(function (error) {
             console.log(error);
