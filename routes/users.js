@@ -15,5 +15,13 @@ router.post('/getUserInfo', async (req, res) => {
     res.send(ret)
 });
 
+router.post('/addUser', async (req, res) => {
+
+    console.log('addUser', req.body)
+    let ret = await User.create(req.body)
+    console.log(ret,'addUser')
+    res.send(ret)
+});
+
 
 module.exports = router
