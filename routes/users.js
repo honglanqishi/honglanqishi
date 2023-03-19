@@ -1,5 +1,7 @@
-const { User } = require("../db");
-var express = require('express');
+// const { User } = require("../db");
+import { User } from "../db.js";
+import express from 'express'
+// var express = require('express');
 let router = express.Router();
 
 router.post('/getUserInfo', async (req, res) => {
@@ -24,4 +26,4 @@ router.post('/addUser', async (req, res) => {
 });
 
 
-module.exports = router
+export default router

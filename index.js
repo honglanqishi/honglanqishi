@@ -1,8 +1,22 @@
-const path = require("path");
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const { init: initDB, Counter } = require("./db");
+// const path = require("path");
+// const express = require("express");
+// const cors = require("cors");
+//const morgan = require("morgan");
+// var usersRouter = require('./routes/users')
+// var chatRouter = require('./chat/index')
+import path from 'path'
+
+import express from 'express'
+import cors from 'cors'
+import morgan from 'morgan'
+
+import usersRouter from './routes/users.js'
+// console.log(usersRouter,'1111111')
+import chatRouter from './chat/index.js'
+
+
+// const { init: initDB, Counter } = require("./db");
+import { init, Counter } from './db.js'
 
 
 
@@ -11,8 +25,7 @@ const logger = morgan("tiny");
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-var usersRouter = require('./routes/users')
-var chatRouter = require('./chat/index')
+
 
 app.use('/users',usersRouter)
 app.use('/chat',chatRouter)
@@ -60,7 +73,7 @@ app.get("/api/wx_openid", async (req, res) => {
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
-  await initDB();
+  await init();
   app.listen(port, () => {
     console.log("启动成功", port);
   });
