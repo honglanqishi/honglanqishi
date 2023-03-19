@@ -13,10 +13,11 @@ import morgan from 'morgan'
 import usersRouter from './routes/users.js'
 // console.log(usersRouter,'1111111')
 import chatRouter from './chat/index.js'
+import proxyRouter from './chat/proxy.js'
 
 
 // const { init: initDB, Counter } = require("./db");
-// import { init, Counter } from './db.js'
+import { init, Counter } from './db.js'
 
 
 
@@ -29,6 +30,8 @@ app.use(express.json());
 
 app.use('/users',usersRouter)
 app.use('/chat',chatRouter)
+app.use('/proxy',proxyRouter)
+
 app.use(cors());
 app.use(logger);
 
@@ -73,7 +76,7 @@ app.get("/api/wx_openid", async (req, res) => {
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
-  // await init();
+  await init();
   app.listen(port, () => {
     console.log("启动成功", port);
   });
