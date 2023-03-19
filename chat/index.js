@@ -34,8 +34,8 @@ router.post('/getAnswer', async (req, res) => {
     const ret = ''
     if (req.body.id) {
         ret = await api.sendMessage(req.body.content, {
-            conversationId: req.conversationId,
-            parentMessageId: req.id,
+            conversationId: req.body.conversationId,
+            parentMessageId: req.body.id,
             systemMessage: `You are ChatGPT, a large language model trained by OpenAI. You answer as concisely as possible for each responseIf you are generat
                 ing a list, do not have too many items.Current date: ${new Date().toISOString()}`
         })
