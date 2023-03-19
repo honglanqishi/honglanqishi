@@ -22,7 +22,7 @@ COPY package*.json /app/
 # RUN npm config set registry https://mirrors.cloud.tencent.com/npm/
 RUN npm config set registry https://registry.npm.taobao.org/
 
-RUN npm install -g n stable
+RUN npm install -g n latest
 
 
 # npm 安装依赖
