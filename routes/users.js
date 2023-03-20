@@ -42,8 +42,15 @@ router.post('/deleteDialog', async (req, res) => {
             openid:req.body.openid
         }
     })
+    
     console.log(ret, 'deleteDialog')
-    res.send(ret)
+    if(ret==1){
+        res.send({
+            code:200,
+            msg:'删除成功'
+        })
+    }
+    
 })
 
 

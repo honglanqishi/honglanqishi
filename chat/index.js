@@ -1,4 +1,5 @@
 import { ChatGPTAPI, ChatGPTUnofficialProxyAPI } from 'chatgpt'
+import { v4 as uuidv4 } from "uuid";
 import proxy from "https-proxy-agent";
 import nodeFetch from "node-fetch";
 
@@ -14,8 +15,8 @@ let v2 = 'gpt-3.5-turbo'
 
 let v3 = 'text-davinci-002-render-sha'
 
-const { APIKEY, accessToken } = process.env;
-
+// const { APIKEY, accessToken } = process.env;
+var APIKEY = ''
 console.log('apiKey',APIKEY)
 
 // const api = new ChatGPTUnofficialProxyAPI({
@@ -25,13 +26,10 @@ console.log('apiKey',APIKEY)
 // })
 const api = new ChatGPTAPI({
     apiKey: APIKEY || '',
-    apiBaseUrl: 'https://api.jjw.com/',
+    // apiBaseUrl: 'https://106.55.18.62/',
     debug: true,
     completionParams: {
         model: v2
-
-        // temperature:0.2
-        // top_p: 0.1
     },
     fetch: (url, options = {}) => {
         const defaultOptions = {
@@ -55,22 +53,14 @@ router.post('/getAnswer', async (req, res) => {
         ret = await api.sendMessage(req.body.content, {
             conversationId: req.body.conversationId,
             parentMessageId: req.body.id,
-            completionParams: {
-                apiKey: APIKEY || '',
-                sessionId: uuidv4(),
-                content:req.body.content
-            },
+           
             systemMessage: `You are ChatGPT, a large language model trained by OpenAI. You answer as concisely as possible for each responseIf you are generat
                 ing a list, do not have too many items.Current date: ${new Date().toISOString()}`
         })
     } else {
         console.log(req.body)
         ret = await api.sendMessage(req.body.content, {
-            completionParams: {
-                apiKey: APIKEY || '',
-                sessionId: uuidv4(),
-                content:req.body.content
-            },
+            
             systemMessage: `You are ChatGPT, a large language model trained by OpenAI. You answer as concisely as possible for each responseIf you are generat
                 ing a list, do not have too many items.Current date: ${new Date().toISOString()}`
         })
