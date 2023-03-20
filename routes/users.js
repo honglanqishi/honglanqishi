@@ -1,5 +1,5 @@
 // const { User } = require("../db");
-import { User, Dialog, Answer,sequelize } from "../db.js";
+import { User, Dialog, Answer, sequelize } from "../db.js";
 import express from 'express'
 // var express = require('express');
 let router = express.Router();
@@ -45,18 +45,20 @@ router.post('/deleteDialog', async (req, res) => {
     })
 
     let ret1 = await Answer.destroy({
-        dialogId: req.body.dialogId,
-        openid: req.body.openid
+        where: {
+            dialogId: req.body.dialogId,
+            openid: req.body.openid
+        }
     })
 
     console.log(ret, 'deleteDialog')
-    if (ret == 1&&ret1==1) {
+    if (ret == 1 && ret1 == 1) {
         await t.commit();
         res.send({
             code: 200,
             msg: '删除成功'
         })
-    }else{
+    } else {
         await t.rollback();
     }
 
@@ -86,7 +88,7 @@ router.post('/getAnswerList', async (req, res) => {
 })
 
 router.post('/addAnswerList', async (req, res) => {
-  
+
     let ret = await Answer.upsert(req.body)
     console.log(ret, 'addAnswerList')
 
