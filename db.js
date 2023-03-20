@@ -68,6 +68,11 @@ const Dialog = sequelize.define("Dialog", {
 
 
 const Answer = sequelize.define("Answer", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   openid: {
     type: DataTypes.STRING,
     allowNull: false
@@ -84,10 +89,11 @@ const Answer = sequelize.define("Answer", {
 
 // 数据库初始化方法
 async function init() {
-  await Counter.sync({ alter: true });
-  await Dialog.sync({ alter: true });
-  await User.sync({ alter: true });
-  await Answer.sync({ alter: true });
+  // await Counter.sync({ alter: true });
+  // await Dialog.sync({ alter: true });
+  // await User.sync({ alter: true });
+  // await Answer.sync({ alter: true });
+  await sequelize.sync({ force: true });
 }
 
 // 导出初始化方法和模型
