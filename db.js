@@ -1,5 +1,5 @@
 
-import {Sequelize, DataTypes} from 'sequelize'
+import { Sequelize, DataTypes } from 'sequelize'
 // const { Sequelize, DataTypes } = require("sequelize");
 
 // 从环境变量中读取数据库配置
@@ -38,16 +38,16 @@ const User = sequelize.define("User", {
   },
   isVip: {
     type: DataTypes.STRING,
-    defaultValue:'0'
+    defaultValue: '0'
   },
-  nickName:{
-    type:DataTypes.STRING
+  nickName: {
+    type: DataTypes.STRING
   },
-  avatarUrl:{
-    type:DataTypes.STRING
+  avatarUrl: {
+    type: DataTypes.STRING
   },
-  isSignIn:{
-    type:DataTypes.STRING
+  isSignIn: {
+    type: DataTypes.STRING
   }
 });
 
@@ -60,16 +60,17 @@ const Dialog = sequelize.define("Dialog", {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4
   },
-  dialogName:{
-    type:DataTypes.STRING,
+  dialogName: {
+    type: DataTypes.STRING,
     allowNull: false
   }
 });
 
 // 数据库初始化方法
 async function init() {
-  // await Counter.sync({ alter: true });
-  await sequelize.sync({ alter: true });
+  await Counter.sync({ alter: true });
+  await Dialog.sync({ alter: true });
+  await User.sync({ alter: true });
 }
 
 // 导出初始化方法和模型
