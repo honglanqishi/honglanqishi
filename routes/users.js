@@ -38,7 +38,8 @@ router.post('/addDialog', async (req, res) => {
 router.post('/deleteDialog', async (req, res) => {
     let ret = await Dialog.destroy({
         where:{
-            dialogId:req.body.dialogId
+            dialogId:req.body.dialogId,
+            openid:req.body.openid
         }
     })
     console.log(ret, 'deleteDialog')
