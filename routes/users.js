@@ -1,5 +1,5 @@
 // const { User } = require("../db");
-import { User } from "../db.js";
+import { User,Dialog } from "../db.js";
 import express from 'express'
 // var express = require('express');
 let router = express.Router();
@@ -11,19 +11,37 @@ router.post('/getUserInfo', async (req, res) => {
         where: {
             openid: req.body.openid
         },
-        raw:true
+        raw: true
     })
-    console.log(ret,'查询结果')
+    console.log(ret, '查询结果')
     res.send(ret)
 });
 
 router.post('/addUser', async (req, res) => {
-
     console.log('addUser', req.body)
     let ret = await User.create(req.body)
-    console.log(ret,'addUser')
+    console.log(ret, 'addUser')
     res.send(ret)
 });
+
+
+router.post('/addDialog', async (req, res) => {
+    let ret = await Dialog.create(req.body)
+    console.log(ret, 'addDialog')
+    res.send(ret)
+})
+
+
+router.post('/getDialogList', async (req, res) => {
+    let ret = await Dialog.findAll({
+        where:{
+            openid:req.body.openid
+        }
+    })
+    console.log(ret, 'getDialogList')
+    res.send(ret)
+})
+
 
 
 export default router

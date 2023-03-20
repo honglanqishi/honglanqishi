@@ -51,15 +51,31 @@ const User = sequelize.define("User", {
   }
 });
 
+const Dialog = sequelize.define("Dialog", {
+  openid: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  dialogId: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4
+  },
+  dialogName:{
+    type:DataTypes.STRING,
+    allowNull: false
+  }
+});
+
 // 数据库初始化方法
 async function init() {
-  await Counter.sync({ alter: true });
-  // await sequelize.sync({ alter: true });
+  // await Counter.sync({ alter: true });
+  await sequelize.sync({ alter: true });
 }
 
 // 导出初始化方法和模型
 export {
   init,
   Counter,
-  User
+  User,
+  Dialog
 };
