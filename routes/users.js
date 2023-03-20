@@ -86,15 +86,11 @@ router.post('/getAnswerList', async (req, res) => {
 })
 
 router.post('/addAnswerList', async (req, res) => {
-    let ret = await Answer.create(req.body)
+  
+    let ret = await Answer.upsert(req.body)
+    console.log(ret, 'addAnswerList')
 
-    console.log(ret, 'getAnswerList')
-    if (ret == 1) {
-        res.send({
-            code: 200,
-            msg: '删除成功'
-        })
-    }
+    res.send(ret)
 })
 
 
