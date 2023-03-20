@@ -26,14 +26,14 @@ console.log('apiKey',APIKEY)
 // })
 const api = new ChatGPTAPI({
     apiKey: APIKEY || '',
-    // apiBaseUrl: 'https://106.55.18.62/',
+    // apiBaseUrl: 'https://106.55.18.62',
     debug: true,
     completionParams: {
         model: v2
     },
     fetch: (url, options = {}) => {
         const defaultOptions = {
-            agent: proxy("https://106.55.18.62"),
+            agent: proxy("https://106.55.18.62:7890"),
         };
 
         const mergedOptions = {
