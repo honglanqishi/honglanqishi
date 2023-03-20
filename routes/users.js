@@ -20,6 +20,10 @@ router.post('/getUserInfo', async (req, res) => {
 router.post('/addUser', async (req, res) => {
     console.log('addUser', req.body)
     let ret = await User.create(req.body)
+    await Dialog.create({
+        openid:req.body.openid,
+        dialogName:'默认对话'
+    })
     console.log(ret, 'addUser')
     res.send(ret)
 });
@@ -28,6 +32,16 @@ router.post('/addUser', async (req, res) => {
 router.post('/addDialog', async (req, res) => {
     let ret = await Dialog.create(req.body)
     console.log(ret, 'addDialog')
+    res.send(ret)
+})
+
+router.post('/deleteDialog', async (req, res) => {
+    let ret = await Dialog.destroy({
+        where:{
+            dialogId:req.body.dialogId
+        }
+    })
+    console.log(ret, 'deleteDialog')
     res.send(ret)
 })
 
