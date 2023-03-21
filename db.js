@@ -96,7 +96,7 @@ const Timeou = sequelize.define("Timeou", {
     type: DataTypes.STRING
   },
   sessionId: {
-    type: DataTypes.JSON,
+    type: DataTypes.STRING,
     allowNull: false
   }
 });
