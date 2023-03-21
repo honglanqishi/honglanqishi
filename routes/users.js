@@ -39,6 +39,20 @@ router.post('/updateUserInfo', async (req, res) => {
     res.send(ret)
 });
 
+//根据userid修改积分
+router.post('/updateUserPoints', async (req, res) => {
+  
+    await User.increment('points',{
+        where:{
+            openid:req.body.userId
+        },
+        by:req.body.addNum
+    })
+    console.log(ret, 'updateUserPoints')
+
+    res.send(ret)
+})
+
 
 
 router.post('/addDialog', async (req, res) => {
@@ -106,6 +120,9 @@ router.post('/addAnswerList', async (req, res) => {
 
     res.send(ret)
 })
+
+
+
 
 
 
