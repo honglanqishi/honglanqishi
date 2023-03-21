@@ -27,15 +27,17 @@ router.post('/getAnswer', async (req, res) => {
 
     axios(config)
         .then(async function (response) {
-            console.log(data.sessionId);
+            console.log(data.sessionId,'请求成功并打印了sessionId');
             let ret = response.data
             ret.sessionId = data.sessionId
+            console.log(response,'打印了response')
             await User.decrement('points',{
                 where:{
                     openid:req.body.openid
                 },
                 by:1
             })
+            console.log('执行了扣分操作11111111')
             res.send(JSON.stringify(ret))
 
         })
