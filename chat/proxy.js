@@ -34,7 +34,7 @@ router.post('/getAnswer', async (req, res) => {
                 console.log('执行超时兼容操作')
                 let tempdata = await Timeou.create({
                     openid: req.body.openid,
-                    sessionId: response.data.sessionId,
+                    sessionId: req.body.sessionId,
                     data: response.data.data
                 })
                 // setTimeout(async ()=>{
@@ -74,7 +74,7 @@ router.post('/getTempData', async (req, res) => {
         }
     })
     console.log(ret, 'getTempData')
-    if (ret.data) {
+    if (ret&&ret.data) {
         await User.decrement('points', {
             where: {
                 openid: req.body.openid
@@ -83,7 +83,9 @@ router.post('/getTempData', async (req, res) => {
         })
     }
     res.send(ret)
-    await ret.destroy()
+    if(ret){
+        await ret.destroy()
+    }
 })
 
 
