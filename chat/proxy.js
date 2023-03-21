@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { v4 as uuidv4 } from "uuid";
+import { User } from "../db.js";
+
 
 import express from 'express'
 // var express = require('express');
@@ -19,15 +21,23 @@ router.post('/getAnswer', async (req, res) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        data: JSON.stringify(data)
+        data: JSON.stringify(data),
+        timeout:6000
     };
 
     axios(config)
-        .then(function (response) {
+        .then(async function (response) {
             console.log(data.sessionId);
             let ret = response.data
             ret.sessionId = data.sessionId
+            await User.decrement('points',{
+                where:{
+                    openid:req.body.openid
+                },
+                by:1
+            })
             res.send(JSON.stringify(ret))
+
         })
         .catch(function (error) {
             console.log(error);
