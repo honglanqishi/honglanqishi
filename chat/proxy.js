@@ -68,7 +68,11 @@ router.post('/getAnswer', async (req, res) => {
 
 
 router.post('/getTempData', async (req, res) => {
-    let ret = await Timeou.findOne(req.body)
+    let ret = await Timeou.findOne({
+        where:{
+            ...req.body
+        }
+    })
     console.log(ret, 'getTempData')
     if (ret.data) {
         await User.decrement('points', {
