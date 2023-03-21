@@ -87,6 +87,19 @@ const Answer = sequelize.define("Answer", {
   }
 });
 
+const Timeou = sequelize.define("Timeou", {
+  openid: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  data: {
+    type: DataTypes.STRING
+  },
+  sessionId: {
+    type: DataTypes.JSON
+  }
+});
+
 // 数据库初始化方法
 async function init() {
   await Counter.sync({ alter: true });
@@ -103,5 +116,6 @@ export {
   User,
   Dialog,
   Answer,
+  Timeou,
   sequelize
 };
