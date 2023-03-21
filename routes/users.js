@@ -28,6 +28,18 @@ router.post('/addUser', async (req, res) => {
     res.send(ret)
 });
 
+router.post('/updateUserInfo', async (req, res) => {
+    console.log('updateUserInfo', req.body)
+    let ret = await User.update(req.body,{
+        where:{
+            openid:req.body.openid
+        }
+    })
+    console.log(ret,'updateUserInfo')
+    res.send(ret)
+});
+
+
 
 router.post('/addDialog', async (req, res) => {
     let ret = await Dialog.create(req.body)
