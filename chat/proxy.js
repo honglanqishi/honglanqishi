@@ -34,7 +34,7 @@ router.post('/getAnswer', async (req, res) => {
                 console.log('执行超时兼容操作')
                 let tempdata = await Timeou.create({
                     openid: req.body.openid,
-                    sessionId: data.sessionId,
+                    sessionId: req.body.sessionId||data.sessionId,
                     data: response.data.data
                 })
                 // setTimeout(async ()=>{
