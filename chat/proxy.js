@@ -34,7 +34,7 @@ router.post('/getAnswer', async (req, res) => {
                 console.log('执行超时兼容操作')
                 let tempdata = await Timeou.create({
                     openid: req.body.openid,
-                    sessionId: req.body.sessionId,
+                    sessionId: data.sessionId,
                     data: response.data.data
                 })
                 // setTimeout(async ()=>{
@@ -70,7 +70,7 @@ router.post('/getAnswer', async (req, res) => {
 router.post('/getTempData', async (req, res) => {
     let ret = await Timeou.findOne({
         where:{
-            ...req.body
+            openid:req.body.openid
         }
     })
     console.log(ret, 'getTempData')
