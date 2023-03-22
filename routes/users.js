@@ -6,7 +6,7 @@ let router = express.Router();
 
 router.post('/getUserInfo', async (req, res) => {
 
-    console.log('请求参数openid', req.body.openid)
+    console.log('getUserInfo请求参数openid', req.body.openid)
     let ret = await User.findOne({
         where: {
             openid: req.body.openid
@@ -41,7 +41,7 @@ router.post('/updateUserInfo', async (req, res) => {
 
 //根据userid修改积分
 router.post('/updateUserPoints', async (req, res) => {
-  
+    console.log('updateUserPoints被调用,',JSON.stringify(req.body))
     let ret = await User.increment('points',{
         where:{
             userId:req.body.userId
