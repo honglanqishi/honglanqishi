@@ -44,7 +44,7 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING
   },
   avatarUrl: {
-    type: DataTypes.STRING
+    type: DataTypes.BLOB
   },
   isSignIn: {
     type: DataTypes.STRING
