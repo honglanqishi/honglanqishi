@@ -42,9 +42,9 @@ router.post('/updateUserInfo', async (req, res) => {
 //根据userid修改积分
 router.post('/updateUserPoints', async (req, res) => {
   
-    await User.increment('points',{
+    let ret = await User.increment('points',{
         where:{
-            openid:req.body.userId
+            userId:req.body.userId
         },
         by:req.body.addNum
     })
