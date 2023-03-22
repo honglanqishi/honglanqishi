@@ -12,7 +12,7 @@ router.post('/getUserInfo', async (req, res) => {
             openid: req.body.openid
         }
     })
-    console.log(JSON.stringify(ret), '查询结果')
+    console.log(ret, '查询结果')
     res.send(ret)
 });
 
@@ -40,7 +40,7 @@ router.post('/updateUserInfo', async (req, res) => {
 
 //根据userid修改积分
 router.post('/updateUserPoints', async (req, res) => {
-    console.log('updateUserPoints被调用,',JSON.stringify(req.body))
+    console.log('updateUserPoints被调用,',req.body)
     let ret = await User.increment('points',{
         where:{
             userId:req.body.userId
