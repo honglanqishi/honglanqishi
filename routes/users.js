@@ -6,7 +6,7 @@ let router = express.Router();
 
 router.post('/getUserInfo', async (req, res) => {
 
-    console.log('openid', req.body.openid)
+    console.log('请求参数openid', req.body.openid)
     let ret = await User.findOne({
         where: {
             openid: req.body.openid

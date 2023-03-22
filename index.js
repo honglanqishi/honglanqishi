@@ -69,7 +69,10 @@ app.get("/api/count", async (req, res) => {
 app.get("/api/wx_openid", async (req, res) => {
   if (req.headers["x-wx-source"]) {
     console.log('获取微信 Open ID',req.headers["x-wx-openid"])
-    res.send(req.headers["x-wx-openid"]);
+    let data = {
+      openid:req.headers["x-wx-openid"]
+    }
+    res.send(data);
   }
 });
 
