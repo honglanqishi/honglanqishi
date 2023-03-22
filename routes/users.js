@@ -13,6 +13,9 @@ router.post('/getUserInfo', async (req, res) => {
         }
     })
     console.log(ret, '查询结果')
+    if(!ret){
+        ret = ""
+    }
     res.send(ret)
 });
 
