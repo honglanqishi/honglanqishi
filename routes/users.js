@@ -10,10 +10,9 @@ router.post('/getUserInfo', async (req, res) => {
     let ret = await User.findOne({
         where: {
             openid: req.body.openid
-        },
-        raw: true
+        }
     })
-    console.log(ret, '查询结果')
+    console.log(JSON.stringify(ret), '查询结果')
     res.send(ret)
 });
 
