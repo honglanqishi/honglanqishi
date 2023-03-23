@@ -128,11 +128,7 @@ router.post('/addAnswerList', async (req, res) => {
 
 router.post('/getConfig', async (req, res) => {
 
-    let ret = await Config.findOne({
-        where:{
-            code:req.body.code
-        }
-    })
+    let ret = await Config.findAll()
     console.log(ret, 'getConfig')
 
     res.send(ret)
