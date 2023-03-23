@@ -58,8 +58,12 @@ router.post('/getAnswer', async (req, res) => {
 
         })
         .catch(function (error) {
-            console.log(error);
-            res.send(error)
+            console.log('打印了错误信息',error);
+            let msgData = {
+                statusCode:-1,
+                msg:'服务请求出错'
+            }
+            res.send(msgData)
         });
 
 })
