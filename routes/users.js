@@ -1,5 +1,5 @@
 // const { User } = require("../db");
-import { User, Dialog, Answer, sequelize,Config } from "../db.js";
+import { User, Dialog, Answer,Config } from "../db.js";
 import express from 'express'
 // var express = require('express');
 let router = express.Router();

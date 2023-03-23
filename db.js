@@ -135,6 +135,6 @@ export {
   Dialog,
   Answer,
   Timeou,
-  Config
+  Config,
   sequelize
 };
