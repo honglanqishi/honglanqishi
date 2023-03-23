@@ -40,7 +40,7 @@ router.post('/getAnswer', async (req, res) => {
                 // setTimeout(async ()=>{
                 //    await tempdata.destroy()
                 // },5000)
-                res.send(JSON.stringify(ret))
+                res.send('服务超时或异常')
                 return
             }
             console.log(data.sessionId, '请求成功并打印了sessionId');
@@ -64,7 +64,7 @@ router.post('/getAnswer', async (req, res) => {
                 sessionId: data.sessionId,
                 data: "500"
             })
-            res.send(msgData)
+            res.send('服务超时或异常')
         });
 
 })
