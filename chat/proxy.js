@@ -23,7 +23,7 @@ router.post('/getAnswer', async (req, res) => {
             'Content-Type': 'application/json'
         },
         data: JSON.stringify(data),
-        timeout: 20 * 1000
+        timeout: 60 * 1000
     };
 
     axios(config)
@@ -57,12 +57,13 @@ router.post('/getAnswer', async (req, res) => {
             res.send(JSON.stringify(ret))
 
         })
-        .catch(function (error) {
+        .catch(async function (error) {
             console.log('打印了错误信息',error);
-            let msgData = {
-                statusCode:-1,
-                msg:'服务请求出错'
-            }
+            await Timeou.create({
+                openid: req.body.openid,
+                sessionId: data.sessionId,
+                data: "500"
+            })
             res.send(msgData)
         });
 
