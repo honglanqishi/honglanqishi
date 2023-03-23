@@ -101,12 +101,29 @@ const Timeou = sequelize.define("Timeou", {
   }
 });
 
+
+const Config = sequelize.define("Config", {
+  code: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  key: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  val: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+});
+
 // 数据库初始化方法
 async function init() {
   await Counter.sync({ alter: true });
   await Dialog.sync({ alter: true });
   await User.sync({ alter: true });
   await Answer.sync({ alter: true });
+  await Config.sync({ alter: true });
   // await sequelize.sync({ force: true });
 }
 
@@ -118,5 +135,6 @@ export {
   Dialog,
   Answer,
   Timeou,
+  Config
   sequelize
 };

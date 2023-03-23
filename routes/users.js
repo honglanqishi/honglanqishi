@@ -1,5 +1,5 @@
 // const { User } = require("../db");
-import { User, Dialog, Answer, sequelize } from "../db.js";
+import { User, Dialog, Answer, sequelize,Config } from "../db.js";
 import express from 'express'
 // var express = require('express');
 let router = express.Router();
@@ -126,7 +126,17 @@ router.post('/addAnswerList', async (req, res) => {
 })
 
 
+router.post('/getConfig', async (req, res) => {
 
+    let ret = await Config.findOne({
+        where:{
+            code:req.body.code
+        }
+    })
+    console.log(ret, 'getConfig')
+
+    res.send(ret)
+})
 
 
 
