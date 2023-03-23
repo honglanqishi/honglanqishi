@@ -64,6 +64,7 @@ router.post('/addDialog', async (req, res) => {
 })
 
 router.post('/deleteDialog', async (req, res) => {
+    console.log('deleteDialog被调用',req.body)
     const t = await sequelize.transaction();
     let ret = await Dialog.destroy({
         where: {
@@ -79,7 +80,8 @@ router.post('/deleteDialog', async (req, res) => {
         }
     })
 
-    console.log(ret, 'deleteDialog')
+    console.log(ret, 'Dialog表执行结果')
+    console.log(ret1, 'Answer表执行结果')
     if (ret == 1 && ret1 == 1) {
         await t.commit();
         res.send({
