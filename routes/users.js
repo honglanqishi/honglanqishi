@@ -13,7 +13,7 @@ router.post('/getUserInfo', async (req, res) => {
         }
     })
     console.log(ret, '查询结果')
-    if(!ret){
+    if (!ret) {
         ret = ""
     }
     res.send(ret)
@@ -32,23 +32,23 @@ router.post('/addUser', async (req, res) => {
 
 router.post('/updateUserInfo', async (req, res) => {
     console.log('updateUserInfo', req.body)
-    let ret = await User.update(req.body,{
-        where:{
-            openid:req.body.openid
+    let ret = await User.update(req.body, {
+        where: {
+            openid: req.body.openid
         }
     })
-    console.log(ret,'updateUserInfo')
+    console.log(ret, 'updateUserInfo')
     res.send(ret)
 });
 
 //根据userid修改积分
 router.post('/updateUserPoints', async (req, res) => {
-    console.log('updateUserPoints被调用,',req.body)
-    let ret = await User.increment('points',{
-        where:{
-            userId:req.body.userId
+    console.log('updateUserPoints被调用,', req.body)
+    let ret = await User.increment('points', {
+        where: {
+            userId: req.body.userId
         },
-        by:req.body.addNum
+        by: req.body.addNum
     })
     console.log(ret, 'updateUserPoints')
 
@@ -64,8 +64,8 @@ router.post('/addDialog', async (req, res) => {
 })
 
 router.post('/deleteDialog', async (req, res) => {
-    console.log('deleteDialog被调用',req.body)
-    const t = await sequelize.transaction();
+    console.log('deleteDialog被调用', req.body)
+    // const t = await sequelize.transaction();
     let ret = await Dialog.destroy({
         where: {
             dialogId: req.body.dialogId,
@@ -82,15 +82,15 @@ router.post('/deleteDialog', async (req, res) => {
 
     console.log(ret, 'Dialog表执行结果')
     console.log(ret1, 'Answer表执行结果')
-    if (ret == 1 && ret1 == 1) {
-        await t.commit();
-        res.send({
-            code: 200,
-            msg: '删除成功'
-        })
-    } else {
-        await t.rollback();
-    }
+    // if (ret == 1 && ret1 == 1) {
+    // await t.commit();
+    res.send({
+        code: 200,
+        msg: '删除成功'
+    })
+    // } else {
+    //     await t.rollback();
+    // }
 
 })
 
@@ -113,7 +113,7 @@ router.post('/getAnswerList', async (req, res) => {
             dialogId: req.body.dialogId
         }
     })
-    console.log(ret, 'getAnswerList')
+    // console.log(ret, 'getAnswerList')
     res.send(ret)
 })
 
