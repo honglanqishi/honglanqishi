@@ -79,7 +79,7 @@ router.post('/getTempData', async (req, res) => {
         }
     })
     console.log(ret, 'getTempData')
-    if (ret&&ret.data) {
+    if (ret&&ret.data&&ret.data!='500') {
         await User.decrement('points', {
             where: {
                 openid: req.body.openid

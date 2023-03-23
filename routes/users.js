@@ -120,7 +120,7 @@ router.post('/getAnswerList', async (req, res) => {
 router.post('/addAnswerList', async (req, res) => {
 
     let ret = await Answer.upsert(req.body)
-    console.log(ret, 'addAnswerList')
+    // console.log(ret, 'addAnswerList')
 
     res.send(ret)
 })
