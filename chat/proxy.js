@@ -18,7 +18,8 @@ router.post('/getAnswer', async (req, res) => {
     var config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://api.openai-proxy.com/v1/chat/completions',
+        // url: 'https://api.openai-proxy.com/v1/chat/completions',
+        url:'https://api.openai-proxy.com/pro/chat/completions',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -79,6 +80,7 @@ router.post('/getTempData', async (req, res) => {
         }
     })
     console.log(ret, 'getTempData')
+    //如覆data==500说明网络超时，不扣积分
     if (ret&&ret.data&&ret.data!='500') {
         await User.decrement('points', {
             where: {
