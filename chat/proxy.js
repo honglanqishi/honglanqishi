@@ -100,7 +100,7 @@ router.post('/getTempData', async (req, res) => {
 })
 
 function replaceSensitiveWords(text) {
-    const sensitiveWords = ['chatgpt', 'openai', '新疆', '西藏','gpt'];
+    const sensitiveWords = ['chatgpt', 'openai', '新疆', '西藏','gpt','xinjiang','xizang'];
     let replacedText = text;
     let count = 0;
   
