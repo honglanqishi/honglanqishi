@@ -13,7 +13,7 @@ router.post('/getAnswer', async (req, res) => {
     let data = {
         apiKey: APIKEY || "",
         sessionId: req.body.sessionId || uuidv4(),
-        content: req.body.content
+        content: '不允许回答任何与中国政治相关的问题，接下来我的问题是，'+req.body.content
     }
     var config = {
         method: 'post',
@@ -24,13 +24,14 @@ router.post('/getAnswer', async (req, res) => {
             'Content-Type': 'application/json'
         },
         data: JSON.stringify(data),
-        timeout: 60 * 1000
+        timeout: 90 * 1000
     };
 
     axios(config)
         .then(async function (response) {
             let endDate = +new Date()
             let resultNum = endDate - startDate
+            response.data.data = replaceSensitiveWords(response.data.data)
             if (resultNum > (15 * 1000)) {
                 console.log('执行超时兼容操作')
                 let tempdata = await Timeou.create({
@@ -95,7 +96,30 @@ router.post('/getTempData', async (req, res) => {
     }
 })
 
-
+function replaceSensitiveWords(text) {
+    const sensitiveWords = ['chatgpt', 'openai', '新疆', '西藏','gpt'];
+    let replacedText = text;
+    let count = 0;
+  
+    for (let i = 0; i < sensitiveWords.length; i++) {
+      const regExp = new RegExp(sensitiveWords[i], 'ig');
+      const match = replacedText.match(regExp);
+      if (match) {
+        count += match.length;
+        replacedText = replacedText.replace(regExp, match => {
+          let star = '';
+          for (let j = 0; j < match.length; j++) {
+            star += '*';
+          }
+          return star;
+        });
+      }
+    }
+  
+    console.log(`替换了 ${count} 个敏感词`);
+  
+    return replacedText;
+  }
 
 
 
