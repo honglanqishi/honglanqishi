@@ -1,5 +1,6 @@
 // const { User } = require("../db");
 import { User, Dialog, Answer,Config } from "../db.js";
+import langdetect from 'langdetect'
 import express from 'express'
 // var express = require('express');
 let router = express.Router();
@@ -133,6 +134,14 @@ router.post('/getConfig', async (req, res) => {
 
     res.send(ret)
 })
+
+router.post('/langdetect', async (req, res) => {
+
+    let ret = langdetect.detect(req.body.text)
+
+    res.send(ret)
+})
+
 
 
 
