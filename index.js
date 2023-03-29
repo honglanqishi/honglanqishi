@@ -16,7 +16,7 @@ import proxyRouter from './chat/proxy.js'
 
 
 // const { init: initDB, Counter } = require("./db");
-// import { init, Counter } from './db.js'
+import { init, Counter } from './db.js'
 
 
 
@@ -79,7 +79,7 @@ app.get("/api/wx_openid", async (req, res) => {
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
-  // await init();
+  await init();
   app.listen(port, () => {
     console.log("启动成功", port);
   });
