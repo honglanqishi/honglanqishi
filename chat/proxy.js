@@ -9,11 +9,14 @@ let router = express.Router();
 const { APIKEY, accessToken } = process.env;
 
 router.post('/getAnswer', async (req, res) => {
+    //不允许回答任何与中国政治相关的问题，接下来我的问题是，
+    let txt = req.body.content
+    txt = replaceSensitiveWords(txt)
     let startDate = +new Date()
     let data = {
         apiKey: APIKEY || "",
         sessionId: req.body.sessionId || uuidv4(),
-        content: '不允许回答任何与中国政治相关的问题，接下来我的问题是，'+req.body.content
+        content: txt
     }
     var config = {
         method: 'post',
