@@ -79,8 +79,9 @@ const port = process.env.PORT || 80;
 
 async function bootstrap() {
   await init();
-  app.listen(port, () => {
+  var server = app.listen(port, () => {
     console.log("启动成功", port);
+    server.timeout = 300000;
   });
 }
 

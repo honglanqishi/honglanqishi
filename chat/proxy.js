@@ -27,7 +27,7 @@ router.post('/getAnswer', async (req, res) => {
             'Content-Type': 'application/json'
         },
         data: JSON.stringify(data),
-        timeout: 90 * 1000
+        timeout: 120 * 1000
     };
 
     axios(config)
