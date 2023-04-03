@@ -1,9 +1,4 @@
-// const path = require("path");
-// const express = require("express");
-// const cors = require("cors");
-//const morgan = require("morgan");
-// var usersRouter = require('./routes/users')
-// var chatRouter = require('./chat/index')
+
 import path from 'path'
 
 import express from 'express'

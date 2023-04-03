@@ -6,10 +6,10 @@ import { User, Timeou } from "../db.js";
 import express from 'express'
 // var express = require('express');
 let router = express.Router();
-const { APIKEY, accessToken } = process.env;
+const { APIKEY, ANSWER_URL } = process.env;
 
 router.post('/getAnswer', async (req, res) => {
-    //不允许回答任何与中国政治相关的问题，接下来我的问题是，
+    
     let txt = req.body.content
     txt = replaceSensitiveWords(txt)
     let startDate = +new Date()
@@ -22,7 +22,7 @@ router.post('/getAnswer', async (req, res) => {
         method: 'post',
         maxBodyLength: Infinity,
         // url: 'https://api.openai-proxy.com/v1/chat/completions',
-        url:'https://api.openai-proxy.com/pro/chat/completions',
+        url:ANSWER_URL,
         headers: {
             'Content-Type': 'application/json'
         },
