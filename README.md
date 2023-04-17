@@ -1,19 +1,18 @@
-# wxcloudrun-express
-
+# wxcloudrun-springboot
 [![GitHub license](https://img.shields.io/github/license/WeixinCloud/wxcloudrun-express)](https://github.com/WeixinCloud/wxcloudrun-express)
-![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/WeixinCloud/wxcloudrun-express/express)
-![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/WeixinCloud/wxcloudrun-express/sequelize)
+![GitHub package.json dependency version (prod)](https://img.shields.io/badge/maven-3.6.0-green)
+![GitHub package.json dependency version (prod)](https://img.shields.io/badge/jdk-11-green)
 
-微信云托管 Node.js Express 框架模版，实现简单的计数器读写接口，使用云托管 MySQL 读写、记录计数值。
+微信云托管 Java Springboot 框架模版，实现简单的计数器读写接口，使用云托管 MySQL 读写、记录计数值。
 
 ![](https://qcloudimg.tencent-cloud.cn/raw/be22992d297d1b9a1a5365e606276781.png)
 
-## 快速开始
 
-前往 [微信云托管快速开始页面](https://cloud.weixin.qq.com/cloudrun/onekey)，选择相应语言的模板，根据引导完成部署。
+## 快速开始
+前往 [微信云托管快速开始页面](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/basic/guide.html)，选择相应语言的模板，根据引导完成部署。
 
 ## 本地调试
-下载代码在本地调试，请参考[微信云托管本地调试指南](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/guide/debug/)
+下载代码在本地调试，请参考[微信云托管本地调试指南](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/guide/debug/)。
 
 ## 实时开发
 代码变动时，不需要重新构建和启动容器，即可查看变动后的效果。请参考[微信云托管实时开发指南](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/guide/debug/dev.html)
@@ -21,25 +20,24 @@
 ## Dockerfile最佳实践
 请参考[如何提高项目构建效率](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/scene/build/speed.html)
 
-## 项目结构说明
-
-```
+## 目录结构说明
+~~~
 .
-├── Dockerfile
-├── README.md
-├── container.config.json
-├── db.js
-├── index.js
-├── index.html
-├── package.json
-```
+├── Dockerfile                      Dockerfile 文件
+├── LICENSE                         LICENSE 文件
+├── README.md                       README 文件
+├── container.config.json           模板部署「服务设置」初始化配置（二开请忽略）
+├── mvnw                            mvnw 文件，处理mevan版本兼容问题
+├── mvnw.cmd                        mvnw.cmd 文件，处理mevan版本兼容问题
+├── pom.xml                         pom.xml文件
+├── settings.xml                    maven 配置文件
+├── springboot-cloudbaserun.iml     项目配置文件
+└── src                             源码目录
+    └── main                        源码主目录
+        ├── java                    业务逻辑目录
+        └── resources               资源文件目录
+~~~
 
-- `index.js`：项目入口，实现主要的读写 API
-- `db.js`：数据库相关实现，使用 `sequelize` 作为 ORM
-- `index.html`：首页代码
-- `package.json`：Node.js 项目定义文件
-- `container.config.json`：模板部署「服务设置」初始化配置（二开请忽略）
-- `Dockerfile`：容器配置文件
 
 ## 服务 API 文档
 
@@ -70,6 +68,8 @@
 ```
 curl https://<云托管服务域名>/api/count
 ```
+
+
 
 ### `POST /api/count`
 
