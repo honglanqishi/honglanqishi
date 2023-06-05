@@ -32,7 +32,7 @@ router.post('/getAnswer', async (req, res) => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${APIKEY}`
         },
-        data: JSON.stringify(data),
+        data: data,
         timeout: 120 * 1000
     };
 
