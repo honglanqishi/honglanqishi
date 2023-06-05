@@ -13,10 +13,15 @@ router.post('/getAnswer', async (req, res) => {
     let txt = req.body.content
     txt = replaceSensitiveWords(txt)
     let startDate = +new Date()
+    // let data = {
+    //     apiKey: APIKEY || "",
+    //     sessionId: req.body.sessionId || uuidv4(),
+    //     content: txt
+    // }
+
     let data = {
-        apiKey: APIKEY || "",
-        sessionId: req.body.sessionId || uuidv4(),
-        content: txt
+        "model": "gpt-3.5-turbo",
+        "messages": [{"role": "user", "content": txt}]
     }
     var config = {
         method: 'post',
@@ -24,7 +29,8 @@ router.post('/getAnswer', async (req, res) => {
         // url: 'https://api.openai-proxy.com/v1/chat/completions',
         url:ANSWER_URL,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${APIKEY}`
         },
         data: JSON.stringify(data),
         timeout: 120 * 1000
